@@ -43,6 +43,12 @@
             android:summary="@string/summary_placeholder"
             settings:keywords="@string/keywords_lockscreen" />
 
+        <Preference
+            android:key="duress_password"
+            android:title="@string/duress_pwd_pref_title"
+            android:summary="@string/duress_pwd_pref_summary"
+            settings:controller="com.android.settings.security.DuressPasswordPreferenceController" />
+
         <com.android.settingslib.RestrictedPreference
             android:key="fingerprint_settings"
             android:title="@string/security_settings_fingerprint_preference_title"

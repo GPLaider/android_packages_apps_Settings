@@ -5997,4 +5997,22 @@
     <string name="safety_center_account_security_search_terms" msgid="3950829613581775913"></string>
     <string name="safety_center_device_finder_search_terms" msgid="452013643838126923"></string>
     <string name="safety_center_system_component_update_search_terms" msgid="3110390275537109543"></string>
+    <string name="cellular_call_access_title">통화 사용</string>
+    <string name="cellular_call_access_summary">일반 셀룰러 통화를 허용합니다. 긴급통화는 유지되며 모바일 데이터와 SMS에는 영향이 없습니다.</string>
+    <string name="cellular_sms_access_title">SMS 사용</string>
+    <string name="cellular_sms_access_summary">SMS 송수신을 허용합니다. 모바일 데이터와 통화에는 영향이 없습니다.</string>
+    <string name="compatibility_profiles_title">호환성 프로필</string>
+    <string name="compatibility_profiles_dashboard_summary">서명·패키지·버전 범위가 고정된 Android 호환성 예외</string>
+    <string name="compatibility_profiles_empty">설치된 호환성 프로필이 없습니다.</string>
+    <string name="compatibility_profiles_invalid">서명된 프로필 목록이 잘못되었거나 없습니다. 적용된 프로필이 없습니다.</string>
+    <string name="compatibility_profile_summary">상태: %1$s\n보안 영향: %2$s\n만료: %3$s\n이유: %4$s\n패키지: %5$s</string>
+    <string name="compatibility_profile_status_active">활성</string>
+    <string name="compatibility_profile_status_retired">폐기됨</string>
+    <string name="compatibility_profile_status_expired">만료됨</string>
+    <string name="compatibility_profile_status_not_installed">앱이 설치되지 않음</string>
+    <string name="compatibility_profile_status_signer_mismatch">앱 서명 불일치</string>
+    <string name="compatibility_profile_status_version_mismatch">프로필 버전 범위 밖</string>
+    <string name="compatibility_profile_impact_none">보호 감소 없음으로 명시됨</string>
+    <string name="compatibility_profile_impact_app">이 앱의 보호 수준 감소</string>
+    <string name="compatibility_profile_impact_platform">플랫폼 보호 수준 감소</string>
 </resources>

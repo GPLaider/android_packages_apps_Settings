@@ -191,6 +191,21 @@
             android:summary="@string/enable_adb_wireless_summary"
             settings:keywords="@string/keywords_adb_wireless" />
 
+        <com.android.settingslib.PrimarySwitchPreference
+            android:key="toggle_tailscadble"
+            android:title="@string/tailscadble_title"
+            android:summary="@string/tailscadble_summary_off"
+            android:persistent="false"
+            settings:keywords="@string/tailscadble_keywords" />
+
+        <ListPreference
+            android:key="tailscadble_transport"
+            android:title="@string/tailscadble_transport_title"
+            android:dialogTitle="@string/tailscadble_transport_title"
+            android:entries="@array/tailscadble_transports"
+            android:entryValues="@array/tailscadble_transport_values"
+            android:persistent="false" />
+
         <SwitchPreferenceCompat
             android:key="enable_adb_root"
             android:title="@string/adb_enable_root"

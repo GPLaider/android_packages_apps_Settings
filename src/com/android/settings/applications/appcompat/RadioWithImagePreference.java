@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -140,11 +141,11 @@ public class RadioWithImagePreference extends CheckBoxPreference {
         TypedArray typedArray = context.obtainStyledAttributes(new int[] {
                 com.android.settingslib.widget.theme.R.attr
                         .expressiveSelectorWithWidgetPreferenceTheme});
-        // Since the context is shared, only try to apply the theme if it's not resolved.
+        // Do not mutate the shared preference context when injecting the fallback theme.
         if (typedArray.getResourceId(0, Resources.ID_NULL) == Resources.ID_NULL) {
-            context.getTheme().applyStyle(
-                    R.style.ThemeOverlay_ExpressiveSelectorWithWidgetPreference,
-                    false);
+            context = new ContextThemeWrapper(
+                    context,
+                    R.style.ThemeOverlay_ExpressiveSelectorWithWidgetPreference);
         }
         typedArray.recycle();
         return context;

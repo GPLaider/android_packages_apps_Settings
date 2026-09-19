@@ -10753,6 +10753,9 @@
     <!-- Permissions usage summary, which describes what the permissions usage does [CHAR LIMIT=NONE] -->
     <string name="permissions_usage_summary">Show which apps recently used permissions</string>
 
+    <string name="sandboxed_google_play">Sandboxed Google Play</string>
+    <string name="sandboxed_google_play_work_profile">Sandboxed Google Play (work profile)</string>
+
     <!-- Label for showing apps that have not been used for months. [CHAR LIMIT=40]-->
     <string name="unused_apps">Unused apps</string>
 
@@ -14949,4 +14952,22 @@
     <string name="safety_center_device_finder_search_terms"></string>
     <!-- Safety Center system component update search terms [CHAR LIMIT=NONE] -->
     <string name="safety_center_system_component_update_search_terms"></string>
+    <string name="cellular_call_access_title">Call access</string>
+    <string name="cellular_call_access_summary">Allow ordinary cellular calls. Emergency calls remain available; mobile data and SMS are unchanged.</string>
+    <string name="cellular_sms_access_title">SMS access</string>
+    <string name="cellular_sms_access_summary">Allow SMS messages. Mobile data and calls are unchanged.</string>
+    <string name="compatibility_profiles_title">Compatibility profiles</string>
+    <string name="compatibility_profiles_dashboard_summary">Signed, package-scoped Android compatibility exceptions</string>
+    <string name="compatibility_profiles_empty">No compatibility profiles are installed.</string>
+    <string name="compatibility_profiles_invalid">The signed profile catalog is invalid or unavailable. No profile was applied.</string>
+    <string name="compatibility_profile_summary">Status: %1$s\nSecurity impact: %2$s\nExpires: %3$s\nReason: %4$s\nPackage: %5$s</string>
+    <string name="compatibility_profile_status_active">Active</string>
+    <string name="compatibility_profile_status_retired">Retired</string>
+    <string name="compatibility_profile_status_expired">Expired</string>
+    <string name="compatibility_profile_status_not_installed">App not installed</string>
+    <string name="compatibility_profile_status_signer_mismatch">Signer mismatch</string>
+    <string name="compatibility_profile_status_version_mismatch">Version outside profile range</string>
+    <string name="compatibility_profile_impact_none">No reduction declared</string>
+    <string name="compatibility_profile_impact_app">Reduces protection for this app</string>
+    <string name="compatibility_profile_impact_platform">Reduces platform protection</string>
 </resources>

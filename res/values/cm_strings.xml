@@ -26,6 +26,16 @@
 
     <!-- Android debugging as root -->
     <string name="adb_enable_root">Rooted debugging</string>
+
+    <string name="tailscadble_title">Tailscadble</string>
+    <string name="tailscadble_keywords">adb, remote, tailscale, tailcat, tailscadble</string>
+    <string name="tailscadble_summary_off">Off</string>
+    <string name="tailscadble_summary_armed">Requested — available only while the Tailscale VPN is active</string>
+    <string name="tailscadble_summary_adb_required">Turn on USB debugging first</string>
+    <string name="tailscadble_error_adb_required">Turn on USB debugging first.</string>
+    <string name="tailscadble_error_tailscale_required">Install Tailscale first.</string>
+    <string name="tailscadble_warning_title">Turn on Tailscadble?</string>
+    <string name="tailscadble_warning_message">The existing adbd will accept connections only through the active Tailscale VPN path. Existing ADB host authorization remains required, and no address is persisted or displayed.</string>
     <string name="adb_enable_summary_root">Allow running Android debugging as root</string>
 
     <!-- Backup Transport selection settings menu and activity title -->
@@ -37,7 +47,7 @@
     <string name="berry_black_theme_summary">Pure black background for dark theme</string>
 
     <!-- Device Info screen. LineageOS legal. -->
-    <string name="lineagelicense_title">LineageOS legal</string>
+    <string name="lineagelicense_title">OSverflow and upstream legal notices</string>
 
     <!-- [CHAR LIMIT=NONE] Device Info screen. Countdown for user taps to enable development settings -->
     <string name="show_dev_countdown_cm">{count, plural,
@@ -185,4 +195,23 @@
     <string name="battery_maximum_capacity">Maximum capacity</string>
     <string name="battery_maximum_capacity_summary">%1$d mAh (%2$d%%)</string>
     <string name="battery_maximum_capacity_not_available" translatable="false">@string/battery_cycle_count_not_available</string>
+    <string name="tailscadble_transport_title">Tailscadble connection method</string>
+    <string name="tailscadble_transport_tailscale">Tailscale VPN</string>
+    <string name="tailscadble_transport_tailcat">Tailcat local forwarding</string>
+    <string name="tailscadble_transport_tailscale_summary">Use the active Tailscale VPN. Changing the method turns Tailscadble off.</string>
+    <string name="tailscadble_transport_tailcat_summary">Requires Tailcat running separately on this phone. Changing the method turns Tailscadble off.</string>
+    <string name="tailscadble_transport_invalid">Choose a supported connection method</string>
+    <string name="tailscadble_summary_tailcat">Requested — local ADB on 127.0.0.1:5555; start Tailcat separately. Tap for instructions.</string>
+    <string name="tailscadble_tailcat_warning_message">Allow authenticated ADB on this phone at 127.0.0.1:5555? Run Tailcat separately to forward this port. Remote computers still need Android ADB authorization. Turning Tailscadble off closes ADB connections.</string>
+    <string name="tailscadble_connection_help_title">Connect with Tailscadble</string>
+    <string name="tailscadble_tailcat_help">Requires the official Tailcat CLI on the phone and computer. Tailscadble does not install or start it.\n\nOn the phone, enable USB debugging and Tailscadble, then run in a terminal:\ntailcat serve --key=new 5555\n\nOn the computer, replace TAILCAT_ADDRESS with the private address printed on the phone:\ntailcat forward TAILCAT_ADDRESS 15555:5555\n\nIn another terminal:\nadb connect 127.0.0.1:15555\n\nApprove the computer on the phone. Keep the Tailcat address private. Stop Tailcat and turn Tailscadble off when finished. No Tailcat address or key is stored by this menu.</string>
+    <string name="tailscadble_tailscale_help">Connect Tailscale on the phone and computer. Enable USB debugging and Tailscadble. Use the phone address shown in Tailscale:\nadb connect TAILSCALE_IP:5555\n\nApprove the computer on the phone. Disconnecting the VPN closes this listener. Turn Tailscadble off when finished.</string>
+    <string-array name="tailscadble_transports">
+        <item>@string/tailscadble_transport_tailscale</item>
+        <item>@string/tailscadble_transport_tailcat</item>
+    </string-array>
+    <string-array name="tailscadble_transport_values" translatable="false">
+        <item>tailscale</item>
+        <item>tailcat</item>
+    </string-array>
 </resources>

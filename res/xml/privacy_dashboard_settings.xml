@@ -85,6 +85,18 @@
         android:summary="@string/mic_toggle_description"
         settings:controller="com.android.settings.privacy.MicToggleController"/>
 
+    <SwitchPreferenceCompat
+        android:key="privacy_call_access"
+        android:title="@string/cellular_call_access_title"
+        android:summary="@string/cellular_call_access_summary"
+        settings:controller="com.android.settings.privacy.CellularServiceToggleController" />
+
+    <SwitchPreferenceCompat
+        android:key="privacy_sms_access"
+        android:title="@string/cellular_sms_access_title"
+        android:summary="@string/cellular_sms_access_summary"
+        settings:controller="com.android.settings.privacy.CellularServiceToggleController" />
+
     <!-- Show passwords -->
     <SwitchPreferenceCompat
         android:key="show_password"

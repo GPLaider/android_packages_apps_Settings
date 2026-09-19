@@ -292,7 +292,7 @@ public class ChooseLockPassword extends SettingsActivity {
         private boolean mIsExpressiveStyle = false;
 
         /** Used to store the profile type for which pin/password is being set */
-        protected enum ProfileType {
+        public enum ProfileType {
             None,
             Managed,
             Private,
@@ -936,6 +936,38 @@ public class ChooseLockPassword extends SettingsActivity {
          * @return an array of messages describing the error, important messages come first.
          */
         String[] convertErrorCodeToMessages() {
+            var converter = new PasswordValidationErrorConverter(
+                    getContext(), mIsAlphaMode, mProfileType, mValidationErrors);
+            String[] messages = converter.convertErrorCodeToMessages();
+            mIsErrorTooShort = converter.mIsErrorTooShort;
+            return messages;
+        }
+
+        public static class PasswordValidationErrorConverter {
+            private final Context mContext;
+            private final boolean mIsAlphaMode;
+            private final ProfileType mProfileType;
+            private final List<PasswordValidationError> mValidationErrors;
+            public boolean mIsErrorTooShort = true;
+
+            public PasswordValidationErrorConverter(Context context, boolean isAlphaMode,
+                    ProfileType profileType,
+                    List<PasswordValidationError> validationErrors) {
+                mContext = context;
+                mIsAlphaMode = isAlphaMode;
+                mProfileType = profileType;
+                mValidationErrors = validationErrors;
+            }
+
+            private Context getContext() {
+                return mContext;
+            }
+
+            private String getString(int id) {
+                return mContext.getString(id);
+            }
+
+            public String[] convertErrorCodeToMessages() {
             List<String> messages = new ArrayList<>();
             mIsErrorTooShort = false;
             for (PasswordValidationError error : mValidationErrors) {
@@ -973,7 +1005,8 @@ public class ChooseLockPassword extends SettingsActivity {
                         break;
                     case TOO_SHORT:
                         mIsErrorTooShort = true;
-                        boolean isSupervisingProfile = isSupervisingProfile();
+                        boolean isSupervisingProfile =
+                                isSupervisingProfile(mProfileType);
                         String message = StringUtil.getIcuPluralsString(getContext(),
                                 error.requirement,
                                 mIsAlphaMode
@@ -1028,6 +1061,7 @@ public class ChooseLockPassword extends SettingsActivity {
             }
 
             return messages.toArray(new String[0]);
+        }
         }
 
         /**
@@ -1275,8 +1309,12 @@ public class ChooseLockPassword extends SettingsActivity {
         }
 
         private boolean isSupervisingProfile() {
+            return isSupervisingProfile(mProfileType);
+        }
+
+        static boolean isSupervisingProfile(ProfileType profileType) {
             return android.multiuser.Flags.allowSupervisingProfile()
-                    && mProfileType.equals(ProfileType.Supervising);
+                    && profileType.equals(ProfileType.Supervising);
         }
     }
 }

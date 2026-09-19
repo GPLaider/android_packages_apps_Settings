@@ -47,6 +47,8 @@ class ButtonNavigationSettingsScreen : PreferenceScreenMixin {
 
     override fun getPreferenceHierarchy(context: Context, coroutineScope: CoroutineScope) =
         preferenceHierarchy(context) {
+            +ButtonNavigationSettingsAssistPreference()
+            +ButtonNavigationSettingsContextualSearchPreference()
             +PreferenceCategory("group", R.string.button_navigation_settings_order_title) += {
                 +DefaultButtonNavigationSettingsOrderPreference(
                     ButtonNavigationSettingsOrderStore(context)

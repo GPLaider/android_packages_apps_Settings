@@ -20,6 +20,10 @@ import static android.app.contextualsearch.ContextualSearchManager.FEATURE_CONTE
 
 import android.content.Context;
 import android.provider.Settings;
+import android.os.UserHandle;
+
+import lineageos.providers.LineageSettings;
+import org.lineageos.internal.util.DeviceKeysConstants.Action;
 
 import androidx.annotation.NonNull;
 
@@ -37,6 +41,11 @@ public class NavigationSettingsContextualSearchController extends TogglePreferen
 
     @Override
     public boolean isChecked() {
+        // A custom Lineage HOME action can bypass the contextual-search invocation entirely.
+        // Report that state honestly; only an explicit enable changes the user's assignment.
+        if (usesHomeButton() && homeAction() != Action.SEARCH.ordinal()) {
+            return false;
+        }
         boolean onByDefault = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_searchAllEntrypointsEnabledDefault);
         return Settings.Secure.getInt(mContext.getContentResolver(),
@@ -46,8 +55,35 @@ public class NavigationSettingsContextualSearchController extends TogglePreferen
 
     @Override
     public boolean setChecked(boolean isChecked) {
-        return Settings.Secure.putInt(mContext.getContentResolver(),
+        final int previousAction = homeAction();
+        final boolean changeHomeAction = isChecked && usesHomeButton()
+                && previousAction != Action.SEARCH.ordinal();
+        if (changeHomeAction && !LineageSettings.System.putIntForUser(
+                mContext.getContentResolver(), LineageSettings.System.KEY_HOME_LONG_PRESS_ACTION,
+                Action.SEARCH.ordinal(), UserHandle.USER_CURRENT)) {
+            return false;
+        }
+        final boolean saved = Settings.Secure.putInt(mContext.getContentResolver(),
                 Settings.Secure.SEARCH_ALL_ENTRYPOINTS_ENABLED, isChecked ? 1 : 0);
+        if (!saved && changeHomeAction) {
+            LineageSettings.System.putIntForUser(mContext.getContentResolver(),
+                    LineageSettings.System.KEY_HOME_LONG_PRESS_ACTION, previousAction,
+                    UserHandle.USER_CURRENT);
+        }
+        return saved;
+    }
+
+    private boolean usesHomeButton() {
+        return mContext.getResources().getInteger(
+                com.android.internal.R.integer.config_navBarInteractionMode) != 2;
+    }
+
+    private int homeAction() {
+        final int defaultAction = mContext.getResources().getInteger(
+                org.lineageos.platform.internal.R.integer.config_longPressOnHomeBehavior);
+        return LineageSettings.System.getIntForUser(mContext.getContentResolver(),
+                LineageSettings.System.KEY_HOME_LONG_PRESS_ACTION, defaultAction,
+                UserHandle.USER_CURRENT);
     }
 
     @Override

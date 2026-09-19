@@ -75,6 +75,19 @@
             android:targetPackage="${applicationId}"/>
     </Preference>
 
+    <Preference
+        android:key="sandboxed_google_play"
+        android:title="@string/sandboxed_google_play"
+        android:order="-980"
+        settings:controller="com.android.settings.applications.GmsCompatAppController"/>
+
+    <Preference
+        android:key="sandboxed_google_play_work_profile"
+        android:title="@string/sandboxed_google_play_work_profile"
+        android:order="-979"
+        settings:forWork="true"
+        settings:controller="com.android.settings.applications.GmsCompatAppController"/>
+
     <PreferenceCategory
         android:key="dashboard_tile_placeholder"
         android:order="10"/>
@@ -132,6 +145,13 @@
                    android:value="com.android.settings.Settings$UserAspectRatioAppListActivity"/>
             <intent android:action="android.settings.MANAGE_USER_ASPECT_RATIO_SETTINGS"/>
         </Preference>
+
+        <Preference
+            android:key="osverflow_compatibility_profiles"
+            android:title="@string/compatibility_profiles_title"
+            android:summary="@string/compatibility_profiles_dashboard_summary"
+            android:order="23"
+            android:fragment="com.android.settings.applications.CompatibilityProfilesFragment" />
     </PreferenceCategory>
 
 </PreferenceScreen>

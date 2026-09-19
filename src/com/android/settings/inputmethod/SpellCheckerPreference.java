@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.text.TextUtils;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.textservice.SpellCheckerInfo;
@@ -77,11 +78,12 @@ class SpellCheckerPreference extends CustomListPreference {
             TypedArray typedArray = context.obtainStyledAttributes(new int[] {
                     com.android.settingslib.widget.theme.R.attr
                             .expressiveTwoTargetPreferenceTheme});
-            // Since the context is shared, only try to apply the theme if it 's not resolved.
+            // Do not mutate the shared preference context when injecting the fallback theme.
             if (typedArray.getResourceId(0, Resources.ID_NULL) == Resources.ID_NULL) {
-                context.getTheme().applyStyle(
+                context = new ContextThemeWrapper(
+                        context,
                         com.android.settingslib.widget.preference.twotarget.R.style
-                                .ThemeOverlay_ExpressiveTwoTargetPreference, false);
+                                .ThemeOverlay_ExpressiveTwoTargetPreference);
             }
             typedArray.recycle();
         }

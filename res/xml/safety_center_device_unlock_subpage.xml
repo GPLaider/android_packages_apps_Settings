@@ -22,4 +22,11 @@
         android:title="@string/lock_screen_title"
         settings:safetySource="AndroidLockScreen" />
 
+    <Preference
+        android:key="duress_password"
+        android:order="1000"
+        android:title="@string/duress_pwd_pref_title"
+        android:summary="@string/duress_pwd_pref_summary"
+        settings:controller="com.android.settings.security.DuressPasswordPreferenceController" />
+
 </PreferenceScreen>
